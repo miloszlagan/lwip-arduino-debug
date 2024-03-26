@@ -10,6 +10,12 @@ Setup for debugging Arduino and LwIP behaviour under full ESP-IDF build system.
 git submodule update --init --recursive
 ```
 
+Due to a Arduino having C++-ish compilation rules a patch in `components/AsyncTCP/CMakeLists.txt` is required to compile the project.
+
+```cmake
+target_compile_options(${COMPONENT_TARGET} PRIVATE -fno-rtti -Wno-error=address)
+```
+
 2. Setup the ESP-IDF environment
 
 Install recommended ESP-IDF extension for VSCode. Run `>ESP-IDF: Configure ESP-IDF Extension` and follow configuration steps.
